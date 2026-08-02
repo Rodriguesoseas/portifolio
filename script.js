@@ -204,18 +204,17 @@ if (skillsWrapper && skillsBar) {
   }, { passive: true });
 }
 
-const carousel = document.getElementById('oficinaCarousel');
-
-if (carousel) {
-  const track = carousel.querySelector('.v-track');
-  const slides = Array.from(carousel.querySelectorAll(':scope > .v-track > .v-slide'));
-  const prevBtn = carousel.querySelector('.v-prev');
-  const nextBtn = carousel.querySelector('.v-next');
-  const dotsWrap = carousel.querySelector('.v-dots');
+function initCarousel(root, slidesPerView = 1) {
+  if (!root) return;
+  const track = root.querySelector('.v-track');
+  const slides = Array.from(root.querySelectorAll(':scope > .v-track > .v-slide'));
+  const prevBtn = root.querySelector('.v-prev');
+  const nextBtn = root.querySelector('.v-next');
+  const dotsWrap = root.querySelector('.v-dots');
   const AUTOPLAY_MS = 3500;
-  const STEP = 100 / 3;
+  const STEP = 100 / slidesPerView;
   const TOTAL = slides.length;
-  const CLONES = 3;
+  const CLONES = slidesPerView;
   const REAL_START = CLONES;
   let index = REAL_START;
   let autoplayId = null;
@@ -313,10 +312,10 @@ if (carousel) {
     const target = normalize(index);
     if (target !== index) {
       index = target;
-      carousel.classList.add('is-snapping');
+      root.classList.add('is-snapping');
       requestAnimationFrame(() => {
         render(false);
-        requestAnimationFrame(() => carousel.classList.remove('is-snapping'));
+        requestAnimationFrame(() => root.classList.remove('is-snapping'));
       });
     }
   }
@@ -360,12 +359,12 @@ if (carousel) {
   prevBtn.addEventListener('click', prev);
   nextBtn.addEventListener('click', next);
 
-  carousel.addEventListener('mouseenter', stopAutoplay);
-  carousel.addEventListener('mouseleave', startAutoplay);
-  carousel.addEventListener('focusin', stopAutoplay);
-  carousel.addEventListener('focusout', startAutoplay);
+  root.addEventListener('mouseenter', stopAutoplay);
+  root.addEventListener('mouseleave', startAutoplay);
+  root.addEventListener('focusin', stopAutoplay);
+  root.addEventListener('focusout', startAutoplay);
 
-  carousel.addEventListener('keydown', (e) => {
+  root.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
       prev();
@@ -382,12 +381,12 @@ if (carousel) {
   });
 
   let touchStartX = 0;
-  carousel.addEventListener('touchstart', (e) => {
+  root.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     stopAutoplay();
   }, { passive: true });
 
-  carousel.addEventListener('touchend', (e) => {
+  root.addEventListener('touchend', (e) => {
     const dx = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(dx) >= 40) {
       if (dx > 0) {
@@ -408,7 +407,10 @@ if (carousel) {
         stopAutoplay();
       }
     });
-  }, { threshold: 0.3 }).observe(carousel);
+  }, { threshold: 0.3 }).observe(root);
 
   render(false);
 }
+
+initCarousel(document.getElementById('oficinaCarousel'), 3);
+initCarousel(document.getElementById('sorteioCarousel'), 1);
