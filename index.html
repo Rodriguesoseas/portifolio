@@ -21,13 +21,13 @@
         </svg>
         Oseas<span class="accent">.</span>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about" class="nav-link">Sobre</a></li>
         <li><a href="#skills" class="nav-link">Habilidades</a></li>
         <li><a href="#projects" class="nav-link">Projetos</a></li>
         <li><a href="#contact" class="nav-link">Contato</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Menu">
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -158,34 +158,87 @@
         <h2 class="section-title"><span class="accent">#</span> Projetos</h2>
         <div class="section-divider"></div>
         <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-icon">🌦️</div>
-            <h3 class="project-title">Clima App</h3>
-            <p class="project-desc">Aplicação web para consulta de clima em tempo real. Interface limpa que exibe temperatura, umidade e condições meteorológicas.</p>
-            <div class="project-tech">
-              <span>HTML</span><span>CSS</span><span>JS</span><span>API</span>
+          <article class="project-card project-featured">
+            <div class="v-carousel" id="oficinaCarousel" aria-label="Galeria do app Oficina">
+              <div class="v-track">
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-home.png" alt="Home do app Oficina" width="652" height="877" loading="eager" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-menu.png" alt="Menu lateral do app Oficina" width="434" height="868" loading="lazy" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-cadastro.png" alt="Cadastro de cliente no app Oficina" width="451" height="867" loading="lazy" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-agenda.png" alt="Agenda com alerta de OS no app Oficina" width="431" height="861" loading="lazy" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-estoque.png" alt="Estoque no app Oficina" width="504" height="859" loading="lazy" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-os-1.png" alt="Criação de ordem de serviço no app Oficina" width="427" height="857" loading="lazy" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-os-2.png" alt="Ordem de serviço em andamento no app Oficina" width="477" height="872" loading="lazy" /></div>
+                  </div>
+                </div>
+                <div class="v-slide">
+                  <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="imagem/projetos/oficina-final.png" alt="Conclusão de ordem de serviço no app Oficina" width="484" height="846" loading="lazy" /></div>
+                  </div>
+                </div>
+              </div>
+              <button class="v-control v-prev" type="button" aria-label="Imagem anterior">&#9664;</button>
+              <button class="v-control v-next" type="button" aria-label="Próxima imagem">&#9654;</button>
+              <div class="v-dots" role="tablist" aria-label="Seleção de imagens"></div>
             </div>
-            <a href="https://github.com/Rodriguesoseas/clima_app" target="_blank" rel="noopener" class="project-link">Ver no GitHub <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            <div class="project-content">
+              <h3 class="project-title">Oficina</h3>
+              <p class="project-desc">Sistema full-stack de gestão para oficina mecânica. Aplicativo mobile em Flutter consumindo uma API REST em Ruby on Rails com PostgreSQL e autenticação JWT — gerencia clientes, motos, ordens de serviço, estoque e finanças do dia, com controle de acesso por nível de usuário.</p>
+              <div class="project-tech">
+                <span>Flutter</span><span>Dart</span><span>Rails</span><span>PostgreSQL</span><span>JWT</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Rodriguesoseas/oficina_app" target="_blank" rel="noopener" class="project-btn">App <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                <a href="https://github.com/Rodriguesoseas/oficina_api" target="_blank" rel="noopener" class="project-btn">API <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+              </div>
+            </div>
           </article>
 
           <article class="project-card">
-            <div class="project-icon">🔧</div>
-            <h3 class="project-title">Oficina API</h3>
-            <p class="project-desc">API REST completa para gestão de oficina mecânica. Gerencia clientes, motos, ordens de serviço, estoque e finanças do dia.</p>
-            <div class="project-tech">
-              <span>Ruby on Rails</span><span>PostgreSQL</span><span>REST</span><span>JWT</span>
+            <div class="project-media">
+              <img src="imagem/projetos/clima.png" alt="Screenshot do Clima App" width="1200" height="675" loading="lazy" />
             </div>
-            <a href="https://github.com/Rodriguesoseas/oficina_api" target="_blank" rel="noopener" class="project-link">Ver no GitHub <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-          </article>
-
-          <article class="project-card">
-            <div class="project-icon">📱</div>
-            <h3 class="project-title">Oficina App</h3>
-            <p class="project-desc">Aplicativo mobile Flutter conectado à Oficina API. Cadastro de clientes, motos, ordens de serviço e controle de acesso por nível de usuário.</p>
-            <div class="project-tech">
-              <span>Flutter</span><span>Dart</span><span>Rails API</span><span>Auth</span>
+            <div class="project-content">
+              <h3 class="project-title">Clima App</h3>
+              <p class="project-desc">Aplicação web para consulta de clima em tempo real. Interface limpa que exibe temperatura, umidade e condições meteorológicas.</p>
+              <div class="project-tech">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>API</span>
+              </div>
+              <a href="https://github.com/Rodriguesoseas/clima_app" target="_blank" rel="noopener" class="project-link">Ver no GitHub <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
-            <a href="https://github.com/Rodriguesoseas/oficina_app" target="_blank" rel="noopener" class="project-link">Ver no GitHub <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
           </article>
         </div>
       </div>
