@@ -825,6 +825,15 @@ body {
   max-height: none;
 }
 
+.v-carousel--single .phone-frame {
+  width: min(60%, 340px);
+  margin: 0 auto;
+}
+
+.v-carousel--single .phone-screen img {
+  max-height: none;
+}
+
 .app-frame {
   position: relative;
   display: flex;

@@ -414,3 +414,4 @@ function initCarousel(root, slidesPerView = 1) {
 
 initCarousel(document.getElementById('oficinaCarousel'), 3);
 initCarousel(document.getElementById('sorteioCarousel'), 1);
+initCarousel(document.getElementById('climaCarousel'), 1);
