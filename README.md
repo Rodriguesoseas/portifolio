@@ -42,6 +42,7 @@ O site é estático e publicado no GitHub Pages pelo workflow em `.github/workfl
 ├── script.js         # Menu, carrosséis, reveal, extras
 ├── 404.html          # Página de erro temática
 ├── imagem/           # Fotos e capturas dos projetos (WebP/PNG)
+├── arquivos/         # Currículo (curriculo.pdf)
 └── .github/workflows # Deploy GitHub Pages
 ```
 

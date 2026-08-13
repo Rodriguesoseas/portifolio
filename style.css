@@ -412,6 +412,19 @@ body {
   box-shadow: 0 8px 32px var(--accent-glow);
 }
 
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.btn-ghost:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
 /* Terminal */
 .terminal-window {
   background: var(--bg-card);
