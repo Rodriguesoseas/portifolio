@@ -13,6 +13,10 @@ function toggleMenu() {
   const open = navLinks.classList.toggle('open');
   navToggle.classList.toggle('active', open);
   navToggle.setAttribute('aria-expanded', String(open));
+  if (open) {
+    const firstLink = navLinks.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
 }
 
 function closeMenu() {
@@ -33,6 +37,13 @@ navAnchors.forEach(link => {
 document.addEventListener('click', (e) => {
   if (!navbar.contains(e.target) && navLinks.classList.contains('open')) {
     closeMenu();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    closeMenu();
+    navToggle.focus();
   }
 });
 
@@ -84,7 +95,7 @@ function updateActiveSection() {
   const scrollPos = window.scrollY + 120;
   const sections = document.querySelectorAll('section[id]');
 
-revealSections.forEach(section => {
+  sections.forEach(section => {
     const top = section.offsetTop;
     const height = section.offsetHeight;
     const id = section.getAttribute('id');
@@ -206,6 +217,7 @@ if (skillsWrapper && skillsBar) {
 
 function initCarousel(root, slidesPerView = 1) {
   if (!root) return;
+  root.style.setProperty('--slides-per-view', slidesPerView);
   const track = root.querySelector('.v-track');
   const slides = Array.from(root.querySelectorAll(':scope > .v-track > .v-slide'));
   const prevBtn = root.querySelector('.v-prev');
@@ -224,7 +236,6 @@ function initCarousel(root, slidesPerView = 1) {
   const tailClones = slides.slice(0, CLONES).map(s => s.cloneNode(true));
   [...headClones, ...tailClones].forEach(clone => {
     clone.setAttribute('aria-hidden', 'true');
-    clone.querySelectorAll('img').forEach(im => { im.loading = 'eager'; });
   });
   [...headClones].reverse().forEach(clone => {
     track.prepend(clone);
@@ -240,7 +251,6 @@ function initCarousel(root, slidesPerView = 1) {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.className = 'v-dot';
-    dot.setAttribute('role', 'tab');
     dot.setAttribute('tabindex', i === 0 ? '0' : '-1');
     dot.setAttribute('aria-label', `Imagem ${i + 1} de ${slides.length}`);
     dot.addEventListener('click', () => {
@@ -302,7 +312,11 @@ function initCarousel(root, slidesPerView = 1) {
     dots.forEach((dot, i) => {
       const isActive = i === photo;
       dot.classList.toggle('active', isActive);
-      dot.setAttribute('aria-selected', String(isActive));
+      if (isActive) {
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.removeAttribute('aria-current');
+      }
       dot.setAttribute('tabindex', isActive ? '0' : '-1');
     });
     applyLayers();
@@ -415,3 +429,52 @@ function initCarousel(root, slidesPerView = 1) {
 initCarousel(document.getElementById('oficinaCarousel'), 3);
 initCarousel(document.getElementById('sorteioCarousel'), 1);
 initCarousel(document.getElementById('climaCarousel'), 1);
+
+const footerYear = document.querySelector('.footer-year');
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
+}
+
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  });
+}
+
+const copyBtn = document.querySelector('.copy-email-btn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', async () => {
+    const email = 'oseas__rodrigues@hotmail.com';
+    const fallback = () => {
+      const textarea = document.createElement('textarea');
+      textarea.value = email;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    };
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        fallback();
+      }
+      copyBtn.classList.add('copied');
+      copyBtn.textContent = 'Copiado!';
+    } catch {
+      fallback();
+      copyBtn.classList.add('copied');
+      copyBtn.textContent = 'Copiado!';
+    }
+    setTimeout(() => {
+      copyBtn.classList.remove('copied');
+      copyBtn.textContent = 'Copiar';
+    }, 2000);
+  });
+}
