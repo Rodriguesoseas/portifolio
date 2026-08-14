@@ -154,6 +154,7 @@ body {
 
 .nav-links {
   display: flex;
+  align-items: center;
   list-style: none;
   gap: 32px;
 }
@@ -205,6 +206,7 @@ body {
   border-radius: 999px;
   color: var(--accent);
   font-weight: 600;
+  white-space: nowrap;
   transition: background 0.25s, box-shadow 0.25s, color 0.25s, border-color 0.25s;
 }
 
