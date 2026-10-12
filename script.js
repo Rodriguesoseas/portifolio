@@ -429,6 +429,7 @@ function initCarousel(root, slidesPerView = 1) {
 initCarousel(document.getElementById('oficinaCarousel'), 3);
 initCarousel(document.getElementById('sorteioCarousel'), 1);
 initCarousel(document.getElementById('climaCarousel'), 1);
+initCarousel(document.getElementById('restauranteCarousel'), 1);
 
 const footerYear = document.querySelector('.footer-year');
 if (footerYear) {
